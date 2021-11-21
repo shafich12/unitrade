@@ -18,11 +18,11 @@ function delete_product_controller($id){
 
 }
 
-function update_product_controller($id, $title, $desc, $price, $stock, $category, $image, $keywords, $owner){
+function update_product_controller($id, $title, $desc, $price, $stock, $category, $image, $keywords){
     // create an instance of the Product class
     $product_instance = new Product();
     // call the method from the class
-    return $product_instance->update_one_product($id, $title, $desc, $price, $stock, $category, $image, $keywords, $owner);
+    return $product_instance->update_one_product($id, $title, $desc, $price, $stock, $category, $image, $keywords);
 
 }
 

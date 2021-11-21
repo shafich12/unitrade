@@ -7,8 +7,8 @@
                 <div class="sidebar custom-scrollbar">
                     <div class="sidebar-user text-center">
 
-                        <h6 class="mt-3 f-14">JOHN</h6>
-                        <p>general manager.</p>
+                        <h6 class="mt-3 f-14"><?php echo $user['username']?></h6>
+                        <p style="text-transform: lowercase"><?php echo $user['user_email']?></p>
                     </div>
                     <ul class="sidebar-menu">
                         <li><a class="sidebar-header" href="index.php"><i
@@ -61,8 +61,10 @@
 
                       
 
-
-                        <li><a class="sidebar-header" href="login.html"><i
+                        <li><a class="sidebar-header" href="../../"><i
+                                    data-feather="log-in"></i><span>Shop</span></a>
+                        </li>
+                        <li><a class="sidebar-header" href="?logout=1"><i
                                     data-feather="log-in"></i><span>Logout</span></a>
                         </li>
                     </ul>

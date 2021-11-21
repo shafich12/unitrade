@@ -45,7 +45,7 @@ class Product extends Connection{
 		
 	function add_category($cat_name, $cat_image){
 		// return true or false
-		return $this->query("insert into categories(cat_name) values('$cat_name', '$cat_image')");
+		return $this->query("insert into categories(cat_name, cat_image) values('$cat_name', '$cat_image')");
 	}
 
 	function select_all_categories(){

@@ -53,23 +53,24 @@ include_once("inc/sidebar.php")
                                                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form class="needs-validation">
+                                                    <form class="needs-validation" action="../actions/category_actions.php" method="POST" enctype="multipart/form-data">
                                                         <div class="form">
                                                             <div class="form-group">
-                                                                <label for="validationCustom01" class="mb-1">Category Name :</label>
-                                                                <input class="form-control" id="validationCustom01" type="text">
+                                                                <label for="catName" class="mb-1">Category Name :</label>
+                                                                <input class="form-control" id="catName" name="catName" type="text">
                                                             </div>
                                                             <div class="form-group mb-0">
-                                                                <label for="validationCustom02" class="mb-1">Category Image :</label>
-                                                                <input class="form-control" id="validationCustom02" type="file">
+                                                                <label for="catImage" class="mb-1">Category Image :</label>
+                                                                <input class="form-control" id="catImage" name="image" type="file" accept="image/*">
                                                             </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-primary" type="submit" name="addCatButton">Save</button>
+                                                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
                                                         </div>
                                                     </form>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-primary" type="button">Save</button>
-                                                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -79,8 +80,10 @@ include_once("inc/sidebar.php")
                                         <thead>
                                         
                                           <tr>
+                                            <th scope="col">Category Image</th>
                                             <th scope="col">Category Name</th>
                                             <th scope="col">Product Count</th>
+                                            <th scope="col">Edit/Delete</th>
                                           </tr>
                                         
                                         </thead>
@@ -88,8 +91,16 @@ include_once("inc/sidebar.php")
                                         <?php foreach($categories as $cats){ ?>
                                             
                                           <tr>
-                                            <th scope="row"><?php echo $cats['cat_name'] ?></th>
+                                            <th scope="row" style="width: 20%;"><img src="../../<?php echo $cats['cat_image'] ?>" alt="" style="width: 40%;"></td>
+                                            <td><?php echo $cats['cat_name'] ?></th>
                                             <td><?php echo get_cat_product_count($cats['cat_id'])['results'] ?></td>
+                                            <td><a href="<?php echo "editcategory.php?id=".$cats['cat_id'] ?>">
+                                                            <i class="fa fa-pencil me-1"
+                                                                    aria-hidden="true"></i>
+                                                        </a><a href="<?php echo '../actions/category_actions.php?deleteCatID='.$cats['cat_id'] ?>">
+                                                            <i class="fa fa-trash-o ms-1"
+                                                                    aria-hidden="true"></i>
+                                                        </a></td>
                                           </tr>
                                         <?php } ?>
                                         </tbody>

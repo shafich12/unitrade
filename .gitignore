@@ -1,3 +1,4 @@
 vendor/
-images/
+images/categories/*
+images/product/*
 assets/images

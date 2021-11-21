@@ -5,6 +5,8 @@ include_once(__DIR__.'/../../../controllers/user-controller.php');
 if(!is_admin()){
     header("location: ../../");
 }
+check_logout();
+$user = select_one_user_id_controller($_SESSION['user_id']);
 
 ?>
 
