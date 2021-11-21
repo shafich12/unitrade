@@ -1,0 +1,128 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "e7e082e806f86f86e2db663c64ecc642",
+    "packages": [
+        {
+            "name": "jeremykendall/php-domain-parser",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeremykendall/php-domain-parser.git",
+                "reference": "add2b07755ab1d2543a383bd78fbe031c6377f9a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeremykendall/php-domain-parser/zipball/add2b07755ab1d2543a383bd78fbe031c6377f9a",
+                "reference": "add2b07755ab1d2543a383bd78fbe031c6377f9a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "1.2.*",
+                "phpunit/phpunit": "4.*"
+            },
+            "bin": [
+                "bin/parse",
+                "bin/pdp-psl"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pdp\\": "library/"
+                },
+                "files": [
+                    "library/mb-parse-url.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Kendall",
+                    "homepage": "http://about.me/jeremykendall",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Public Suffix List based URL parsing implemented in PHP.",
+            "keywords": [
+                "Public Suffix List",
+                "domain parsing",
+                "url parsing"
+            ],
+            "support": {
+                "issues": "https://github.com/jeremykendall/php-domain-parser/issues",
+                "source": "https://github.com/jeremykendall/php-domain-parser/tree/develop"
+            },
+            "time": "2014-07-21T15:23:19+00:00"
+        },
+        {
+            "name": "mdwheele/swotphp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mdwheele/swotphp.git",
+                "reference": "d2badf17aedc48ed6b249460271fa6dc6a3f24f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mdwheele/swotphp/zipball/d2badf17aedc48ed6b249460271fa6dc6a3f24f8",
+                "reference": "d2badf17aedc48ed6b249460271fa6dc6a3f24f8",
+                "shasum": ""
+            },
+            "require": {
+                "jeremykendall/php-domain-parser": "~1.4",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SwotPHP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dustin Wheeler",
+                    "email": "mdwheele@ncsu.edu"
+                }
+            ],
+            "description": "Identify email addresses or domains names that belong to colleges or universities.",
+            "homepage": "https://github.com/mdwheele/swotphp",
+            "keywords": [
+                "url"
+            ],
+            "support": {
+                "issues": "https://github.com/mdwheele/swotphp/issues",
+                "source": "https://github.com/mdwheele/swotphp/tree/master"
+            },
+            "time": "2019-10-08T05:18:16+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "mdwheele/swotphp": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
+}
