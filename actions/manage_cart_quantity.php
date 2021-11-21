@@ -1,27 +1,37 @@
 <?php
 
     session_start();
-    require_once(__DIR__.'/../controllers/cart_controller.php');
+    require_once(__DIR__.'/../controllers/cart-controller.php');
     include_once('utilities.php');
 
     if(isset($_GET['pid'])){
         $pid = $_GET['pid'];
         $qty = $_GET['qty'];
 
-        if(isset($_SESSION['customer_id'])){
-            $cid = $_SESSION['customer_id'];
-            if(update_cart_quantity_controller($cid, $pid, $qty)){
-                header("location: ../View/cart.php");
+        if(isset($_SESSION['user_id'])){
+            $uid = $_SESSION['user_id'];
+            if($qty == 0){
+                header("location: remove_from_cart.php?pid=$pid");
             }else{
-                echo "Failed to update cart item";
+                if(update_cart_quantity_controller($uid, $pid, $qty)){
+                    header("location: ../view/cart.php");
+                }else{
+                    echo "Failed to update cart item";
+                }
             }
+
         }else{
             $ipadd = getIP();
-            if(guest_update_cart_quantity_controller($ipadd, $pid, $qty)){
-                header("location: ../View/cart.php");
+            if($qty == 0){
+                header("location: remove_from_cart.php?pid=$pid");
             }else{
-                echo "Failed to update cart item";
+                if(guest_update_cart_quantity_controller($ipadd, $pid, $qty)){
+                    header("location: ../view/cart.php");
+                }else{
+                    echo "Failed to update cart item";
+                }
             }
+
         }
     }else{
         header("location: cart.php");

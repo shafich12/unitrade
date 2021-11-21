@@ -4,13 +4,15 @@
     }
     include_once(__DIR__.'/../../settings/core.php');
     include_once(__DIR__.'/../../actions/utilities.php');
+    $uid = NULL;
+    $ipadd = NULL;
     check_logout();
     $categories = select_all_categories_controller();
     if (is_login()){
-        $cid = $_SESSION['user_id'];
-        $cart = display_cart_controller($cid);
-        $cartTotal = cart_value_controller($cid);
-        $itemNumber = cart_total_controller($cid);
+        $uid = $_SESSION['user_id'];
+        $cart = display_cart_controller($uid);
+        $cartTotal = cart_value_controller($uid);
+        $itemNumber = cart_total_controller($uid);
     }else{
         $ipadd = getIP();
         $cart = guest_display_cart_controller($ipadd);
@@ -167,15 +169,15 @@
                                             <ul class="show-div shopping-cart">
                                                 <?php if(count($cart)) {
                                                     foreach($cart as $item){
-                                                        $product = select_one_product_controller($item['p_id']);    
+                                                        $p = select_one_product_controller($item['p_id']);    
                                                 ?>
                                                 <li>
                                                     <div class="media">
                                                         <a href="#"><img alt="" class="me-3"
-                                                                src="assets/images/fashion/product/1.jpg"></a>
+                                                                src="<?php echo "../".$p['product_image'] ?>"></a>
                                                         <div class="media-body">
                                                             <a href="#">
-                                                                <h4><?php echo $product['product_title'] ?></h4>
+                                                                <h4><?php echo $p['product_title'] ?></h4>
                                                             </a>
                                                             <h4><span><?php echo $item['qty'] ?> x GHS<?php echo number_format($cartTotal[0]['Result'], 2, '.', '') ?></span></h4>
                                                         </div>

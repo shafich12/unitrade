@@ -70,7 +70,7 @@ else{
                                                                 </a>
                                                                 <p><?php echo $product['product_desc'] ?></p>
                                                                 <a href="<?php echo "product-details.php?id=".$product['product_id'] ?>"><h5><?php echo "GHS ".number_format($product['product_price'], 2, '.', '') ?></h5></a>
-                                                                <a href="#" class="btn btn-solid">add to cart</a>
+                                                                <a href="<?php echo "../actions/add_to_cart.php?pid=".$x['product_id']."&ipadd=".$ipadd."&uid=".$cid."&qty=1"; ?>" class="btn btn-solid">add to cart</a>
                                                             </div>
                                                         </div>
                                                     </div>

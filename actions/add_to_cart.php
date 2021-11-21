@@ -1,16 +1,16 @@
 <?php
-require_once(__DIR__.'/../controllers/cart_controller.php');
+require_once(__DIR__.'/../controllers/cart-controller.php');
 
     $pid = $_GET['pid'];
     $ipadd = $_GET['ipadd'];
-    $cid = $_GET['cid'];
+    $uid = $_GET['uid'];
     $qty = $_GET['qty'];
 
         //check for log in
-    if ($cid !== ""){
+    if ($uid !== ""){
         //check for duplicates
 
-        $isDuplicate = check_duplicate_controller($pid, $cid);
+        $isDuplicate = check_duplicate_controller($pid, $uid);
         if ($isDuplicate){
         ?>
         <script type="text/javascript">
@@ -19,7 +19,7 @@ require_once(__DIR__.'/../controllers/cart_controller.php');
         </script>
         <?php
         }else{
-            $insertIntoCart = insert_into_cart_controller($pid, $ipadd, $cid, $qty);
+            $insertIntoCart = insert_into_cart_controller($pid, $ipadd, $uid, $qty);
             if ($insertIntoCart){
                 header("location: ../view/cart.php");
             }else{

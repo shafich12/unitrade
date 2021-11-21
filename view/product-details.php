@@ -70,23 +70,27 @@ include_once("inc/header.php");
                     <div class="col-lg-4">
                         <div class="product-right product-form-box">
                             <h3><?php echo "GHS ".number_format($product['product_price'], 2, '.', '') ?></h3>
-                        
-                            <div id="selectSize" class="addeffect-section product-description border-product">
-                                <h6 class="product-title">quantity</h6>
-                                <div class="qty-box">
-                                    <div class="input-group"><span class="input-group-prepend"><button type="button"
-                                                class="btn quantity-left-minus" data-type="minus" data-field=""><i
-                                                    class="ti-angle-left"></i></button> </span>
-                                        <input type="text" name="quantity" id="product_quantity" class="form-control input-number" value="1" max="<?php echo $product['product_stock'] ?>">
-                                        <span class="input-group-prepend"><button type="button"
-                                                class="btn quantity-right-plus" data-type="plus" data-field=""><i
-                                                    class="ti-angle-right"></i></button></span>
+
+                            <form action="../actions/add_to_cart.php" method="GET">
+                                <div id="selectSize" class="addeffect-section product-description border-product">
+                                    <input type="hidden" name="pid" value="<?php echo $product['product_id']; ?>">
+                                    <input type="hidden" name="ipadd" value="<?php echo $ipadd; ?>">
+                                    <input type="hidden" name="uid" value="<?php echo $uid; ?>">
+                                    <h6 class="product-title">quantity</h6>
+                                    <div class="qty-box">
+                                        <div class="input-group"><span class="input-group-prepend"><button type="button"
+                                                    class="btn quantity-left-minus" data-type="minus" data-field=""><i
+                                                        class="ti-angle-left"></i></button> </span>
+                                            <input type="text" name="qty" id="product_quantity" class="form-control input-number" value="1" max="<?php echo $product['product_stock'] ?>">
+                                            <span class="input-group-prepend"><button type="button"
+                                                    class="btn quantity-right-plus" data-type="plus" data-field=""><i
+                                                        class="ti-angle-right"></i></button></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="product-buttons"><a href="javascript:void(0)" id="cartEffect"
-                                    class="btn btn-solid hover-solid btn-animation">add to cart</a>
-                            </div>
+                                <div class="product-buttons"><button id="cartEffect" class="btn btn-solid hover-solid btn-animation" type="submit">add to cart</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
