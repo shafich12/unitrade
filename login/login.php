@@ -10,7 +10,7 @@ include_once("inc/header.php");
             <div class="row">
                 <div class="col-sm-6">
                     <div class="page-title">
-                        <h2>customer's login</h2>
+                        <h2>login</h2>
                     </div>
                 </div>
                 <div class="col-sm-6">

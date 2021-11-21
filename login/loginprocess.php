@@ -28,10 +28,18 @@ if (isset($_POST['submit'])) {
             // if(guest_cart_total_controller($ipadd)){
             //     guest_customer_controller($_SESSION['customer_id'], $ipadd);
             // }
-            echo '<script>
-            alert("Login Successful");
-            window.location.href="/unitrade";
-            </script>';
+            if($_SESSION['user_role'] == 0){
+                echo '<script>
+                alert("Login Successful");
+                window.location.href="/unitrade/admin/view";
+                </script>';
+            }else{
+                echo '<script>
+                alert("Login Successful");
+                window.location.href="/unitrade";
+                </script>';
+            }
+
         }
         else{
             array_push($errors, "Wrong username/password combination");
