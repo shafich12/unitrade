@@ -2,6 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+if(!($_SESSION['user_role'])){
+    header("location: ../");
+}
 
 include_once(__DIR__."/../controllers/user-controller.php");
 include_once(__DIR__."/../controllers/product-controller.php");
