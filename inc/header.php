@@ -71,11 +71,12 @@
                                 <?php if(!is_login()) :?>
                                         <li><a href="login/login.php">Login</a></li>
                                         <li><a href="login/register.php">register</a></li>
-                                    <?php else: ?>
+                                        <?php else: ?>
                                         <?php if(is_admin()):?>
                                             <li><a href="admin/view">Admin Dashboard</a></li>
+                                            <?php else: ?>
+                                                <li><a href="view/dashboard.php">Dashboard</a></li>
                                         <?php endif ?>
-                                        <li><a href="view/dashboard.php">Dashboard</a></li>
                                         <li><a href="?logout=1">Logout</a></li>
                                     <?php endif ?>
                                 </ul>
