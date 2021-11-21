@@ -19,7 +19,7 @@ function is_login(){
 }
 
 function is_admin(){
-    if(isset($_SESSION['user_role']) == 0){
+    if($_SESSION['user_role'] == 0){
         return true;
     }else{
         return false;

@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
             // }
             if($_SESSION['user_role'] == 0){
                 echo '<script>
-                alert("Login Successful");
+                alert("Welcome Admin");
                 window.location.href="/unitrade/admin/view";
                 </script>';
             }else{
