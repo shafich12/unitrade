@@ -1,4 +1,5 @@
 <?php
+include_once(__DIR__.'/../controllers/cart-controller.php');
 include_once("inc/header.php");
 ?>
 

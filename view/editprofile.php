@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__.'/../controllers/product-controller.php');
+include_once(__DIR__.'/../controllers/cart-controller.php');
 include_once(__DIR__.'/../controllers/user-controller.php');
 if(isset($_GET['id'])){
     $user = select_one_user_id_controller($_GET['id']);

@@ -1,6 +1,7 @@
 <?php
 include_once(__DIR__."/../controllers/product-controller.php");
 include_once(__DIR__."/../controllers/user-controller.php");
+include_once(__DIR__.'/../controllers/cart-controller.php');
 $product_id = $_GET['id'];
 $product = select_one_product_controller($product_id);
 $related_products = get_related_products_controller($product['product_cat']);

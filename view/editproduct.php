@@ -3,6 +3,7 @@
 
 include_once(__DIR__."/../controllers/user-controller.php");
 include_once(__DIR__."/../controllers/product-controller.php");
+include_once(__DIR__.'/../controllers/cart-controller.php');
 
 $product = array();
 $categories = select_all_categories_controller();

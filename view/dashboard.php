@@ -8,6 +8,7 @@ if(!($_SESSION['user_role'])){
 
 include_once(__DIR__."/../controllers/user-controller.php");
 include_once(__DIR__."/../controllers/product-controller.php");
+include_once(__DIR__.'/../controllers/cart-controller.php');
 $user = select_one_user_id_controller($_SESSION['user_id']);
 $products = select_owner_products_controller($_SESSION['user_id']);
 $address = select_user_shipping_address($_SESSION['user_id']);
