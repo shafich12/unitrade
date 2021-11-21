@@ -2,9 +2,10 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include_once(__DIR__."/controllers/user-controller.php");
-include_once(__DIR__."/controllers/product-controller.php");
-include_once("inc/header.php");
+require_once(__DIR__."/controllers/user-controller.php");
+require_once(__DIR__."/controllers/product-controller.php");
+require_once(__DIR__.'/controllers/cart-controller.php');
+require_once("inc/header.php");
 
 if(is_login()){
     $user = select_one_user_id_controller($_SESSION['user_id']);

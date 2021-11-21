@@ -2,9 +2,27 @@
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
+
     include_once(__DIR__.'/../settings/core.php');
+    include_once(__DIR__.'/../actions/utilities.php');
+
+
     $categories = select_all_categories_controller();
+    $cid = NULL;
+    $ipadd = NULL;
+
     check_logout();
+    if (is_login()){
+        $cid = $_SESSION['user_id'];
+        $cart = display_cart_controller($cid);
+        $cartTotal = cart_value_controller($cid);
+        $itemNumber = cart_total_controller($cid);
+    }else{
+        $ipadd = getIP();
+        $cart = guest_display_cart_controller($ipadd);
+        $cartTotal = guest_cart_value_controller($ipadd);
+        $itemNumber = guest_cart_total_controller($ipadd);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -151,7 +169,7 @@
                                             <div><img src="assets/images/icon/cart.png"
                                                     class="img-fluid blur-up lazyload" alt=""> <i
                                                     class="ti-shopping-cart"></i></div>
-                                            <span class="cart_qty_cls">2</span>
+                                            <span class="cart_qty_cls"><?php echo $itemNumber[0]['count']; ?></span>
                                             <ul class="show-div shopping-cart">
                                                 <li>
                                                     <div class="media">

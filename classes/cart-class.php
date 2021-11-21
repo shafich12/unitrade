@@ -4,8 +4,8 @@ require_once(__DIR__.'/../settings/db_class.php');
 class Cart extends Connection
 {
     //method to insert into the cart
-    function insert_into_cart($pid, $ipadd, $cid, $qty){
-        $sql = "INSERT INTO `cart`(`p_id`, `ip_add`, `c_id`, `qty`) VALUES ($pid, '$ipadd', $cid, '$qty')";
+    function insert_into_cart($pid, $ipadd, $uid, $qty){
+        $sql = "INSERT INTO `cart`(`p_id`, `ip_add`, `u_id`, `qty`) VALUES ($pid, '$ipadd', $uid, '$qty')";
 
         //run the query
         return $this->query($sql);
@@ -21,8 +21,8 @@ class Cart extends Connection
 
     //check for duplicate
     //logged in customers
-    function check_duplicate($pid, $cid){
-        $sql = "SELECT `p_id`, `c_id` FROM `cart` WHERE `p_id`=$pid AND `c_id`=$cid";
+    function check_duplicate($pid, $uid){
+        $sql = "SELECT `p_id`, `u_id` FROM `cart` WHERE `p_id`=$pid AND `u_id`=$uid";
 
         return $this->fetch($sql);
     }
@@ -35,10 +35,10 @@ class Cart extends Connection
     }
     //display cart
     //logged in customers
-    function display_cart($cid){
-        $sql = "SELECT `cart`.`p_id`, `cart`.`c_id`, `cart`.`qty`, `products`.`product_title`, `products`.`product_price`, `products`.`product_image` FROM `cart`
+    function display_cart($uid){
+        $sql = "SELECT `cart`.`p_id`, `cart`.`u_id`, `cart`.`qty`, `products`.`product_title`, `products`.`product_price`, `products`.`product_image` FROM `cart`
         JOIN `products` on (`cart`.`p_id` = `products`.`product_id`)
-        WHERE `cart`.`c_id` = '$cid'";
+        WHERE `cart`.`u_id` = '$uid'";
 
         //run the query
         return $this->fetch($sql);
@@ -56,8 +56,8 @@ class Cart extends Connection
 
     //get cart totals
     //logged and not logged in customers
-    function cart_total($cid){
-        $sql = "SELECT count(`c_id`) AS `count` FROM `cart` WHERE `c_id`=$cid";
+    function cart_total($uid){
+        $sql = "SELECT count(`u_id`) AS `count` FROM `cart` WHERE `u_id`=$uid";
         return $this->fetch($sql);
     }
 
@@ -68,9 +68,9 @@ class Cart extends Connection
 
     //get cart total
     //logged in customers
-    function cart_value($cid){
+    function cart_value($uid){
         $sql="SELECT SUM(`products`.`product_price`*`cart`.`qty`) as Result
-        FROM `cart` JOIN `products` ON (`products`.`product_id` = `cart`.`p_id`) WHERE `cart`.`c_id`=$cid";
+        FROM `cart` JOIN `products` ON (`products`.`product_id` = `cart`.`p_id`) WHERE `cart`.`u_id`=$uid";
 
         return $this->fetch($sql);
     }
@@ -84,8 +84,8 @@ class Cart extends Connection
     }
 
     // delete cart
-    function delete_cart($cid, $pid){
-        $sql = "DELETE FROM cart WHERE c_id=$cid AND p_id=$pid";
+    function delete_cart($uid, $pid){
+        $sql = "DELETE FROM cart WHERE u_id=$uid AND p_id=$pid";
         return $this->query($sql);
     }
 
@@ -95,8 +95,8 @@ class Cart extends Connection
         return $this->query($sql);
     }
 
-    function update_cart($cid, $pid, $qty){
-        $sql = "UPDATE cart SET qty=$qty WHERE c_id=$cid AND p_id=$pid";
+    function update_cart($uid, $pid, $qty){
+        $sql = "UPDATE cart SET qty=$qty WHERE u_id=$uid AND p_id=$pid";
         return $this->query($sql);
     }
 
@@ -105,18 +105,18 @@ class Cart extends Connection
         return $this->query($sql);
     }
 
-    function guest_customer_update($cid, $ipadd){
-        $sql = "UPDATE cart SET c_id=$cid WHERE ip_add='$ipadd'";
+    function guest_customer_update($uid, $ipadd){
+        $sql = "UPDATE cart SET u_id=$uid WHERE ip_add='$ipadd'";
         return $this->query($sql);
     }
 
-    function empty_cart($cid){
-        $sql = "DELETE FROM cart WHERE c_id=$cid";
+    function empty_cart($uid){
+        $sql = "DELETE FROM cart WHERE u_id=$uid";
         return $this->query($sql);
     }
 
-    function add_order($cid, $inv_no, $order_status, $order_date){
-        $sql = "INSERT INTO orders(customer_id, invoice_no, order_status, order_date) VALUES($cid, $inv_no, '$order_status', '$order_date')";
+    function add_order($uid, $inv_no, $order_status, $order_date){
+        $sql = "INSERT INTO orders(customer_id, invoice_no, order_status, order_date) VALUES($uid, $inv_no, '$order_status', '$order_date')";
         return $this->query($sql);
     }
 
@@ -125,8 +125,8 @@ class Cart extends Connection
         return $this->query($sql);
     }
 
-    function add_payment($amt, $cid, $order_id, $currency, $payment_date){
-        $sql = "INSERT INTO payment(amt, customer_id, order_id, currency, payment_date) VALUES($amt, $cid, $order_id, '$currency', '$payment_date')";
+    function add_payment($amt, $uid, $order_id, $currency, $payment_date){
+        $sql = "INSERT INTO payment(amt, customer_id, order_id, currency, payment_date) VALUES($amt, $uid, $order_id, '$currency', '$payment_date')";
         return $this->query($sql);
     }
 

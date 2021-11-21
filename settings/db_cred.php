@@ -3,9 +3,10 @@
 // set up constants for database connection
 // database, user, password, server
 
-define('SERVER', 'localhost');
-define('USER', 'root');
-define('DATABASE', 'unitrade');
-define('PASSWORD', '');
+
+if (!defined('SERVER')) define('SERVER', 'localhost');
+if (!defined('USER')) define('USER', 'root');
+if (!defined('DATABASE')) define('DATABASE', 'unitrade');
+if (!defined('PASSWORD')) define('PASSWORD', '');
 
 ?>

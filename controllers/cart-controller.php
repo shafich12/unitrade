@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__.'/../classes/cart_class.php');
+require_once(__DIR__.'/../classes/cart-class.php');
 
 function insert_into_cart_controller($pid, $ipadd, $cid, $qty){
     $cart = new Cart();
