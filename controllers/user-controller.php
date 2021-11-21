@@ -40,6 +40,11 @@ function select_user_shipping_address($user_id){
     return $user->select_user_address($user_id);
 }
 
+function select_all_users(){
+    $user = new User();
+    return $user->select_users();
+}
+
 
 
 

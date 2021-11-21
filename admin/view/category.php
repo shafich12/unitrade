@@ -1,6 +1,6 @@
 <?php
 include_once("inc/header.php");
-
+$categories = select_all_categories_controller();
 ?>  
 <!-- Page Body Start-->
 <div class="page-body-wrapper">
@@ -40,7 +40,7 @@ include_once("inc/sidebar.php")
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Products Category</h5>
+                                <h5>Category</h5>
                             </div>
                             <div class="card-body">
                                 <div class="btn-popup pull-right">
@@ -49,7 +49,7 @@ include_once("inc/sidebar.php")
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Physical Product</h5>
+                                                    <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Category</h5>
                                                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -77,16 +77,21 @@ include_once("inc/sidebar.php")
                                 <div>
                                     <table class="table">
                                         <thead>
+                                        
                                           <tr>
                                             <th scope="col">Category Name</th>
                                             <th scope="col">Product Count</th>
                                           </tr>
+                                        
                                         </thead>
                                         <tbody>
+                                        <?php foreach($categories as $cats){ ?>
+                                            
                                           <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
+                                            <th scope="row"><?php echo $cats['cat_name'] ?></th>
+                                            <td><?php echo get_cat_product_count($cats['cat_id'])['results'] ?></td>
                                           </tr>
+                                        <?php } ?>
                                         </tbody>
                                       </table>
                                 </div>

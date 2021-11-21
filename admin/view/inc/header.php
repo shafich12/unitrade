@@ -1,5 +1,7 @@
 <?php
 include_once(__DIR__.'/../../../settings/core.php');
+include_once(__DIR__.'/../../../controllers/product-controller.php');
+include_once(__DIR__.'/../../../controllers/user-controller.php');
 if(!is_admin()){
     header("location: ../../");
 }

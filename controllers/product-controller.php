@@ -103,4 +103,9 @@ function get_related_products_controller($cat_id){
     return $product_instance->get_related_products($cat_id);
 }
 
+function get_cat_product_count($cat_id){
+    $product_instance = new Product();
+    return $product_instance->get_cat_product_count($cat_id);
+}
+
 ?>

@@ -1,6 +1,6 @@
 <?php
 include_once("inc/header.php");
-
+$users = select_all_users();
 ?>  
 <!-- Page Body Start-->
 <div class="page-body-wrapper">
@@ -55,15 +55,17 @@ include_once("inc/sidebar.php")
                                   </tr>
                                 </thead>
                                 <tbody>
+                                <?php foreach($users as $user){ ?>
                                   <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Mark</td>
-                                    <td>Mark</td>
-                                    <td>Mark</td>
+                                    <th scope="row"><?php echo $user['username'] ?></th>
+                                    <td><?php echo $user['first_name']." ".$user['last_name'] ?></td>
+                                    <td><?php echo $user['user_school'] ?></td>
+                                    <td><?php echo $user['user_email'] ?></td>
+                                    <td><?php echo $user['user_contact'] ?></td>
                                  
                                  
                                   </tr>
+                                <?php } ?>
                                 </tbody>
                               </table>
                         </div>

@@ -75,6 +75,11 @@ class Product extends Connection{
 		$sql = "SELECT * FROM `products` WHERE `product_cat` = $cat_id";
 		return $this->fetch($sql);
 	}
+
+	public function get_cat_product_count($cat_id){
+		$sql = "SELECT COUNT(product_cat) AS results FROM `products` WHERE product_cat = $cat_id";
+		return $this->fetchOne($sql);
+	}
 }
 
 ?>

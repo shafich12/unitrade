@@ -34,6 +34,10 @@ class User extends Connection{
 		return $this->fetchOne("SELECT * FROM `shipping_address` WHERE user_id = $user_id");
 	}
 
+	function select_users(){
+		return $this->fetch("SELECT username, first_name, last_name, user_school, user_email, user_contact FROM `users`");
+	}
+
 }
 
 ?>

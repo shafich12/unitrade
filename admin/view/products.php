@@ -1,5 +1,6 @@
 <?php
 include_once("inc/header.php");
+$products = select_all_products_controller();
 
 ?>  
 <!-- Page Body Start-->
@@ -57,15 +58,24 @@ include_once("inc/sidebar.php")
                                           </tr>
                                         </thead>
                                         <tbody>
+                                        <?php foreach($products as $product){
+                                            $cat = select_one_category_controller($product['product_cat'])['cat_name'];
+                                            $owner = select_one_user_id_controller($product['product_owner'])['username'];
+                                        ?>
+                                            
                                           <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Mark</td>
-                                            <td>Mark</td>
-                                            <td>Mark</td>
+                                            <th scope="row"><?php echo $product['product_id'] ?></th>
+                                            <td><?php echo $product['product_title'] ?></td>
+                                            <td><?php echo "GHS ".number_format($product['product_price'], 2, '.', '') ?></td>
+                                            <td><?php echo $cat ?></td>
+                                            <td><?php echo $owner ?></td>
                                            
-                                            <td>Delete</td>
+                                            <td><a href="<?php echo '../../actions/product_actions.php?deleteProductID='.$product['product_id'] ?>">
+                                                            <i class="fa fa-trash-o ms-1"
+                                                                    aria-hidden="true"></i>
+                                                        </a></td>
                                           </tr>
+                                        <?php } ?>
                                         </tbody>
                                       </table>
                                 </div>
