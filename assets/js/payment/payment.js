@@ -21,7 +21,7 @@ function payWithPaystack() {
 
 
     var handler = PaystackPop.setup({
-        key: 'pk_test_f6096b2cf6577c0741535bde96177c80513ffc3a', // Replace with your public key
+        key: 'pk_live_bd5356607a881f3a0d6843b75d3172b74b9675cd', // Replace with your public key
         email: email_address,
         amount: document.getElementById('amount').value * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
         currency: 'GHS', // Use GHS for Ghana Cedis or USD for US Dollars

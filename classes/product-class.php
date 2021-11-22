@@ -36,7 +36,7 @@ class Product extends Connection{
 	}
 
 	function select_product_by_school($school){
-		return $this->fetch("SELECT `product_id`,`product_title`,`product_price`,`product_image`, users.user_school FROM products JOIN users ON product_owner = users.user_id WHERE users.user_school = '$school'");
+		return $this->fetch("SELECT `product_id`,`product_title`,`product_price`,`product_image`, `product_owner`, users.user_school FROM products JOIN users ON product_owner = users.user_id WHERE users.user_school = '$school'");
 	}
 
     function select_owner_products($owner_id){
@@ -81,10 +81,29 @@ class Product extends Connection{
 		return $this->fetchOne($sql);
 	}
 
-	function decrement_stock($product_id, $qty){
+	public function decrement_stock($product_id, $qty){
 		$sql = "UPDATE products SET product_stock = product_stock - $qty WHERE product_id = $product_id AND product_stock > 0";
 		return $this->query($sql);
 	}
+
+	public function get_total_users(){
+		$sql = "SELECT COUNT(users.user_id) AS results FROM users";
+		return $this->fetch($sql);
+	}
+
+	public function get_total_products(){
+		$sql = "SELECT COUNT(products.product_id) AS results FROM products";
+		return $this->fetch($sql);
+	}
+
+	public function get_total_orders(){
+		$sql = "SELECT COUNT(orders.order_id) AS results FROM orders";
+		return $this->fetch($sql);
+	}
+	function get_admin_transactions(){
+        $sql = "SELECT orderdetails.order_id, orders.invoice_no, products.product_owner, orderdetails.qty, products.product_price, orders.user_id, orders.order_date FROM orderdetails INNER JOIN orders ON orderdetails.order_id=orders.order_id INNER JOIN products ON products.product_id=orderdetails.product_id";
+        return $this->fetch($sql);
+    }
 }
 
 ?>

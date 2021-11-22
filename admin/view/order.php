@@ -1,4 +1,7 @@
 <?php
+include_once("../../controllers/cart-controller.php");
+include_once("../../controllers/user-controller.php");
+$orders = get_orders_controller();
 include_once("inc/header.php");
 
 ?>  
@@ -54,14 +57,17 @@ include_once("inc/sidebar.php")
                           </tr>
                         </thead>
                         <tbody>
+                        <?php foreach($orders as $order){
+                            $user = select_one_user_id_controller($order['user_id']);    
+                        ?>
                           <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Mark</td>
-                            <td>Mark</td>
-                            <td>Mark</td>
-                         
+                            <th scope="row"><?php echo $order['order_id'] ?></th>
+                            <td><?php echo $user['username'] ?></td>
+                            <td><?php echo $order['invoice_no'] ?></td>
+                            <td><?php echo $order['order_date'] ?></td>
+                            <td><?php echo $order['order_status'] ?></td>
                           </tr>
+                        <?php }?>
                         </tbody>
                       </table>
                 </div>

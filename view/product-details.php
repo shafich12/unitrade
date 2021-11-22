@@ -88,7 +88,13 @@ include_once("inc/header.php");
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-buttons"><button id="cartEffect" class="btn btn-solid hover-solid btn-animation" type="submit">add to cart</button>
+                                <?php if (isset($_SESSION['user_id'])) { ?>
+                                    <?php if ($product['product_owner'] != $_SESSION['user_id']) { ?>
+                                        <a href="<?php echo "actions/add_to_cart.php?pid=" . $product['product_id'] . "&ipadd=" . $ipadd . "&uid=" . $cid . "&qty=1"; ?>" class="btn btn-solid">add to cart</a>
+                                    <?php }
+                                } else { ?>
+                                    <a href="<?php echo "actions/add_to_cart.php?pid=" . $product['product_id'] . "&ipadd=" . $ipadd . "&uid=" . $cid . "&qty=1"; ?>" class="btn btn-solid">add to cart</a>
+                                <?php } ?>
                                 </div>
                             </form>
                         </div>
@@ -150,11 +156,17 @@ include_once("inc/header.php");
                         </div>
                         <div class="product-detail">
                             <div style="text-align:center;">
-                                <a href="product-page(no-sidebar).html">
+                                <a href="<?php echo "product-details.php?id=".$related['product_id'] ?>">
                                     <h5><?php echo $related['product_title'] ?></h5>
                                 </a>
                                 <h5><?php echo "GHS ".number_format($related['product_price'], 2, '.', '') ?></h5>
-                                <a href="#" class="btn btn-solid">add to cart</a>
+                                <?php if (isset($_SESSION['user_id'])) { ?>
+                                    <?php if ($related['product_owner'] != $_SESSION['user_id']) { ?>
+                                        <a href="<?php echo "actions/add_to_cart.php?pid=" . $related['product_id'] . "&ipadd=" . $ipadd . "&uid=" . $cid . "&qty=1"; ?>" class="btn btn-solid">add to cart</a>
+                                    <?php }
+                                } else { ?>
+                                    <a href="<?php echo "actions/add_to_cart.php?pid=" . $related['product_id'] . "&ipadd=" . $ipadd . "&uid=" . $cid . "&qty=1"; ?>" class="btn btn-solid">add to cart</a>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

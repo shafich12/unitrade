@@ -113,4 +113,24 @@ function decrement_stock_controller($product_id, $qty){
     return $product_instance->decrement_stock($product_id, $qty);
 }
 
+function total_products_controller(){
+    $product_instance = new Product();
+    return $product_instance->get_total_products();
+}
+
+function total_users_controller(){
+    $product_instance = new Product();
+    return $product_instance->get_total_users();
+}
+
+function total_orders_controller(){
+    $product_instance = new Product();
+    return $product_instance->get_total_orders();
+}
+
+function get_admin_transactions(){
+    $product_instance = new Product();
+    return $product_instance->get_admin_transactions();
+}
+
 ?>

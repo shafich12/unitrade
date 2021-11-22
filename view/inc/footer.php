@@ -22,19 +22,6 @@
                     <div class="col-lg-2 col-md-6">
                         <div class="sub-title">
                             <div class="footer-title">
-                                <h4>Categories</h4>
-                            </div>
-                            <div class="footer-contant">
-                                <ul>
-                                    <li><a href="#">mens</a></li>
-                                 
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="sub-title">
-                            <div class="footer-title">
                                 <h4>help & legal</h4>
                             </div>
                             <div class="footer-contant">

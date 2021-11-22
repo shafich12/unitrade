@@ -142,4 +142,9 @@ function get_order_history($user_id){
     return $cart->get_purchases($user_id);
 }
 
+function get_orders_controller(){
+    $cart = new Cart();
+    return $cart->get_orders();
+}
+
 ?>

@@ -1,6 +1,9 @@
 <?php
+include_once("../../controllers/product-controller.php");
+include_once("../../controllers/user-controller.php");
 include_once("inc/header.php");
 
+$transactions = get_admin_transactions();
 ?>  
 <!-- Page Body Start-->
 <div class="page-body-wrapper">
@@ -46,7 +49,7 @@ include_once("inc/sidebar.php")
                         <table class="table">
                             <thead>
                               <tr>
-                                <th scope="col">Pay ID</th>
+                                <th scope="col">Invoice No</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Seller Name</th>
                                 <th scope="col">Buyer Name</th>
@@ -56,15 +59,21 @@ include_once("inc/sidebar.php")
                               </tr>
                             </thead>
                             <tbody>
+                            <?php foreach($transactions as $transaction){ 
+                                $owner = select_one_user_id_controller($transaction['product_owner'])['username'];
+                                $buyer = select_one_user_id_controller($transaction['user_id'])['username'];
+
+                            ?> 
+
                               <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Mark</td>
-                                <td>Mark</td>
-                                <td>Mark</td>
-                                <td>Mark</td>
-                             
+                                <th scope="row"><?php echo $transaction['invoice_no'] ?></th>
+                                <td><?php echo number_format($transaction['product_price'] * $transaction['qty'], 2, '.', '') ?></td>
+                                <td><?php echo $owner ?></td>
+                                <td><?php echo $buyer ?></td>
+                                <td><?php echo $transaction['order_id'] ?></td>
+                                <td><?php echo $transaction['order_date'] ?></td>
                               </tr>
+                            <?php } ?>
                             </tbody>
                           </table>
                     </div>

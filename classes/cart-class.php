@@ -140,6 +140,11 @@ class Cart extends Connection
         return $this->query($sql);
     }
 
+    function get_orders(){
+        $sql = "SELECT * FROM orders";
+        return $this->fetch($sql);
+    }
+
     function get_orders_by_user($user_id){
         $sql = "SELECT * FROM orders WHERE user_id=$user_id";
         return $this->fetch($sql);
