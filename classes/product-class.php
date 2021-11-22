@@ -80,6 +80,11 @@ class Product extends Connection{
 		$sql = "SELECT COUNT(product_cat) AS results FROM `products` WHERE product_cat = $cat_id";
 		return $this->fetchOne($sql);
 	}
+
+	function decrement_stock($product_id, $qty){
+		$sql = "UPDATE products SET product_stock = product_stock - $qty WHERE product_id = $product_id AND product_stock > 0";
+		return $this->query($sql);
+	}
 }
 
 ?>

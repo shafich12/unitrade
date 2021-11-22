@@ -82,9 +82,14 @@ function empty_cart_controller($cid){
     return $cart->empty_cart($cid);
 }
 
-function add_order_controller($cid, $inv_no, $order_status, $order_date){
+function add_order_controller($cid, $inv_no, $address, $order_status, $order_date){
     $cart = new Cart();
-    return $cart->add_order($cid, $inv_no, $order_status, $order_date);
+    return $cart->add_order($cid, $inv_no, $address, $order_status, $order_date);
+}
+
+function add_shipping_controller($first_name, $last_name, $phone, $address, $city, $state){
+    $cart = new Cart();
+    return $cart->add_shipping_address($first_name, $last_name, $phone, $address, $city, $state);
 }
 
 function add_order_details_controller($order_id, $product_id, $qty){
@@ -107,9 +112,34 @@ function get_order_details_controller($order_id){
     return $cart->get_order_details($order_id);
 }
 
+function last_inserted_address_cotroller(){
+    $cart = new Cart();
+    return $cart->get_last_address();
+}
+
 function last_inserted_order_cotroller(){
     $cart = new Cart();
     return $cart->last_inserted_order();
+}
+
+function get_user_orders_controller($user_id){
+    $cart = new Cart();
+    return $cart->get_orders_by_user($user_id);
+}
+
+function get_orders_to_user_controller($user_id){
+    $cart = new Cart();
+    return $cart->get_orders_to_owner($user_id);
+}
+
+function get_address_id_controller($address_id){
+    $cart = new Cart();
+    return $cart->get_address_id($address_id);
+}
+
+function get_order_history($user_id){
+    $cart = new Cart();
+    return $cart->get_purchases($user_id);
 }
 
 ?>

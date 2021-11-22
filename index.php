@@ -6,7 +6,8 @@ require_once(__DIR__."/controllers/user-controller.php");
 require_once(__DIR__."/controllers/product-controller.php");
 require_once(__DIR__.'/controllers/cart-controller.php');
 require_once("inc/header.php");
-
+$all_products = select_all_products_controller();
+$extracted = array_splice($all_products, 0, 5);
 if(is_login()){
     $user = select_one_user_id_controller($_SESSION['user_id']);
     $school_products = select_product_by_school_controller($user['user_school']);
@@ -198,29 +199,34 @@ if(is_login()){
             <div class="row">
                 <div class="col-12">
                     <div class="title-basic">
-                        <h2 class="title"><i class="ti-bolt"></i>featured listings</h2>
+                        <h2 class="title">new listings</h2>
                         </div>
                     </div>
                     <div class="product-5 product-m no-arrow">
-                        <div class="product-box product-wrap">
-                            <div class="img-wrapper">
-                                <div class="front">
-                                    <a href="#"><img src="assets/images/pro3/35.jpg"
-                                            class="img-fluid blur-up lazyload bg-img"
-                                            alt=""></a>
+                        <?php foreach($extracted as $key) {
+                            ?>
+                            
+                            <div class="product-box product-wrap">
+                                <div class="img-wrapper">
+                                    <div class="front">
+                                        <a href="<?php echo "view/product-details.php?id=".$key['product_id'] ?>"><img src="<?php echo $key['product_image'] ?>"
+                                                class="img-fluid blur-up lazyload bg-img"
+                                                alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="product-detail">
+                                    <div style="text-align:center;">
+                                        <a href="<?php echo "view/product-details.php?id=".$key['product_id'] ?>">
+                                            <h5><?php echo $key['product_title'] ?></h5>
+                                        </a>
+                                        <h5><?php echo "GHS ".number_format($key['product_price'], 2, '.', '') ?></h5>
+                                        <a href="<?php echo "actions/add_to_cart.php?pid=".$key['product_id']."&ipadd=".$ipadd."&uid=".$cid."&qty=1"; ?>" class="btn btn-solid">add to cart</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="product-detail">
-                                <div style="text-align:center;">
-                                    <a href="product-page(no-sidebar).html">
-                                        <h5>Slim Fit Cotton Shirt</h5>
-                                    </a>
-                                    <h5>$500.00</h5>
-                                    <a href="#" class="btn btn-solid">add to cart</a>
-                                </div>
-                            </div>
-                        </div>
+                        <?php } ?>
                     </div>
+                    
                 </div>
             </div>
         </div>

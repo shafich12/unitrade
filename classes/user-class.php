@@ -30,6 +30,7 @@ class User extends Connection{
 		return $this->fetchOne("SELECT * FROM `users` WHERE user_id = '$user_id'");
 	}
 
+
 	function select_user_address($user_id){
 		return $this->fetchOne("SELECT * FROM `shipping_address` WHERE user_id = $user_id");
 	}

@@ -115,9 +115,19 @@ class Cart extends Connection
         return $this->query($sql);
     }
 
-    function add_order($uid, $inv_no, $order_status, $order_date){
-        $sql = "INSERT INTO orders(customer_id, invoice_no, order_status, order_date) VALUES($uid, $inv_no, '$order_status', '$order_date')";
+    function add_order($uid, $inv_no, $address, $order_status, $order_date){
+        $sql = "INSERT INTO orders(user_id, invoice_no, address_id, order_status, order_date) VALUES($uid, $inv_no, $address, '$order_status', '$order_date')";
         return $this->query($sql);
+    }
+
+    function add_shipping_address($first_name, $last_name, $phone, $address, $city, $state){
+        $sql = "INSERT INTO `shipping_address`(`first_name`, `last_name`, `phone`, `address`, `city`, `state`) VALUES ('$first_name','$last_name','$phone','$address','$city','$state')";
+        return $this->query($sql);
+    }
+
+    function get_last_address(){
+        $sql = "SELECT MAX(address_id) AS last_address FROM shipping_address";
+        return $this->fetch($sql);
     }
 
     function add_order_details($order_id, $product_id, $qty){
@@ -126,8 +136,13 @@ class Cart extends Connection
     }
 
     function add_payment($amt, $uid, $order_id, $currency, $payment_date){
-        $sql = "INSERT INTO payment(amt, customer_id, order_id, currency, payment_date) VALUES($amt, $uid, $order_id, '$currency', '$payment_date')";
+        $sql = "INSERT INTO payment(amt, user_id, order_id, currency, payment_date) VALUES($amt, $uid, $order_id, '$currency', '$payment_date')";
         return $this->query($sql);
+    }
+
+    function get_orders_by_user($user_id){
+        $sql = "SELECT * FROM orders WHERE user_id=$user_id";
+        return $this->fetch($sql);
     }
 
     function get_order($order_id){
@@ -145,6 +160,20 @@ class Cart extends Connection
         return $this->fetch($sql);
     }
 
+    function get_orders_to_owner($user_id){
+        $sql = "SELECT products.product_owner, products.product_title, products.product_image, orders.address_id, products.product_price, orderdetails.qty FROM `orderdetails` INNER JOIN products ON products.product_id = orderdetails.product_id INNER JOIN orders on orderdetails.order_id = orders.order_id WHERE products.product_owner = $user_id";
+        return $this->fetch($sql);
+    }
+
+    function get_purchases($user_id){
+        $sql = "SELECT orders.order_id, products.product_title, products.product_price, orderdetails.qty FROM `orderdetails` INNER JOIN products ON orderdetails.product_id=products.product_id INNER JOIN orders ON orderdetails.order_id = orders.order_id WHERE orders.user_id = $user_id";
+        return $this->fetch($sql);
+    }
+
+    function get_address_id($id){
+        $sql = "SELECT * FROM shipping_address WHERE address_id=$id";
+        return $this->fetchOne($sql);
+    }
 
 
 }

@@ -194,8 +194,8 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="buttons"><a href="view/cart.php" class="view-cart">view
-                                                            cart</a> <a href="view/checkout.php" class="checkout">checkout</a></div>
+                                                    <div class="buttons"><a href="cart.php" class="view-cart">view
+                                                            cart</a> <a href="checkout.php" class="checkout">checkout</a></div>
                                                 </li>
                                             </ul>
                                         </li>

@@ -108,4 +108,9 @@ function get_cat_product_count($cat_id){
     return $product_instance->get_cat_product_count($cat_id);
 }
 
+function decrement_stock_controller($product_id, $qty){
+    $product_instance = new Product();
+    return $product_instance->decrement_stock($product_id, $qty);
+}
+
 ?>

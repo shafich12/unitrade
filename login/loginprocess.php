@@ -2,8 +2,11 @@
 
 session_start();
 require_once("../controllers/user-controller.php");
+require_once("../controllers/cart-controller.php");
+include_once("../actions/utilities.php");
 
 $errors = array();
+$ipadd = getIP();
 
 if (isset($_POST['submit'])) {
     $user_email = $_POST['user_email'];
@@ -25,9 +28,9 @@ if (isset($_POST['submit'])) {
             $_SESSION['user_email'] = $userInfo['user_email'];
             $_SESSION['user_role'] = $userInfo['user_role'];
             $_SESSION['user_id'] = $userInfo['user_id'];
-            // if(guest_cart_total_controller($ipadd)){
-            //     guest_customer_controller($_SESSION['customer_id'], $ipadd);
-            // }
+            if(guest_cart_total_controller($ipadd)){
+                guest_customer_controller($_SESSION['user_id'], $ipadd);
+            }
             if($_SESSION['user_role'] == 0){
                 echo '<script>
                 alert("Welcome Admin");
